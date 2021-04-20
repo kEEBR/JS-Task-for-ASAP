@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Тестовое задание ASAP</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="result">
+      <input type="number" id="value" />
+      <button id="btn">Подсчитать</button>
+    </div>
+
+    <div class="values">
+      <ul>
+        <li>
+          <p>5000:</p>
+          <p class="value"></p>
+        </li>
+        <li>
+          <p>1000:</p>
+          <p class="value"></p>
+        </li>
+        <li>
+          <p>500:</p>
+          <p class="value"></p>
+        </li>
+        <li>
+          <p>100:</p>
+          <p class="value"></p>
+        </li>
+        <li>
+          <p>50:</p>
+          <p class="value"></p>
+        </li>
+      </ul>
+    </div>
+    <script>
+      let banknote = document.getElementById("value");
+      let btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        getMoney(banknote.value);
+        ch = [0, 0, 0, 0, 0];
+      });
+      let banknotes = [5000, 1000, 500, 100, 50];
+      let ch = [0, 0, 0, 0, 0]; // Массив счётчиков, который соответствует количеству банкнот
+      // Или let ch=[]. Тогда см. 42 строку
+      let bank = {};
+      let warn = "warn";
+      function getMoney(amount) {
+        let i = 0;
+        // Изменение массива счётчиков
+        while (i != -1) {
+          // ch[i]=0;
+          for (i; amount / banknotes[i] >= 1; ) {
+            amount = amount - banknotes[i];
+            ch[i]++;
+          }
+          // Заполнение объекта bank
+          bank[banknotes[i]] = ch[i];
+          // Проверка на выход из цикла
+          if (i == banknotes.length - 1) {
+            i = -1;
+          } else {
+            i++;
+          }
+        }
+        // Проверка на некорректное число
+        amount > 0 ? setMoneyResultInNode(warn) : setMoneyResultInNode(bank);
+      }
+
+      function setMoneyResultInNode(getMoneyResult) {
+        let i = 0;
+        let classes = document.querySelectorAll(".value");
+        // Проверка на тип значения
+        if (typeof getMoneyResult != "object") {
+          // Вывод ошибок
+          classes.forEach((e) => {
+            classes[i].innerHTML = warn;
+            i++;
+          });
+        } else {
+          // Вывод результата
+          banknotes.forEach((e) => {
+            classes[i].innerHTML = getMoneyResult[e];
+            i++;
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(111, 21, 129);
+}
+
+p {
+  color: white;
+  font-size: 26px;
+}
+p.value {
+  width: 100%;
+  border-bottom: 1px solid white;
+}
+.values {
+  width: 500px;
+}
+.values ul {
+  list-style-type: none;
+}
+.result {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
